@@ -1,7 +1,24 @@
 <p style="color: green"><%= notice %></p>
 
 <%= render @post %>
+<p>
+<h3>Avatar</h3>
+<% if @post.avatar.attached?%>
+  <%= image_tag @post.avatar, width: "400px" %>
+<% end %>
 
+
+</p>
+<p>
+<h3>Image</h3>
+<% if @post.images.attached?%>
+  <% @post.images.each do |image| %>
+    <%= image_tag image, width: "400px" %>
+  <% end %>
+<% end %>
+
+
+</p>
 <div>
   <%= link_to "Edit this post", edit_post_path(@post) %> |
   <%= link_to "Back to posts", posts_path %>
