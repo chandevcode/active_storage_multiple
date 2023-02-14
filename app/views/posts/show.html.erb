@@ -5,6 +5,7 @@
 <h3>Avatar</h3>
 <% if @post.avatar.attached?%>
   <%= image_tag @post.avatar, width: "400px" %>
+  <%= button_to "Delete", purge_avatar_post_path(@post), method: :delete %>
 <% end %>
 
 
@@ -27,6 +28,8 @@
     <% else %>
       <%= link_to attachment.filename, rails_blob_path(attachment, disposition: "attachment") %>
     <% end %>
+    <br>
+    <%= button_to "Delete ", purge_attachment_path(attachment), method: :delete %>
   <% end %>
 <% end %>
 

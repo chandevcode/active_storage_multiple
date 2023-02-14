@@ -6,6 +6,12 @@ class PostsController < ApplicationController
     @posts = Post.all
   end
 
+  def purge_avatar
+    @post = Post.find(params[:id])
+    @post.avatar.purge 
+    redirect_back fallback_location: root_path, notice: "success"
+  end
+
   # GET /posts/1 or /posts/1.json
   def show
   end
@@ -57,13 +63,13 @@ class PostsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_post
+    @post = Post.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def post_params
-      params.require(:post).permit(:title, :body, :avatar, images: [])
-    end
+  # Only allow a list of trusted parameters through.
+  def post_params
+    params.require(:post).permit(:title, :body, :avatar, images: [])
+  end
 end
